@@ -1,35 +1,34 @@
 import React, { useState } from 'react'
 
 function Form({ table, setTable }) {
-  let [nameInput, setNameInput] = useState('')
-  let [passwordInput, setPasswordInput] = useState('')
-  let [emailInput, setEmailInput] = useState('')
-  let [checkboxInput, setCheckboxInput] = useState('')
+  const emptyForm = {
+    name: '', password: '', email: '', isActive: false
+  }
+  const [formData, setFormData] = useState(emptyForm)
+  const [passMessage, setPassMessage] = useState('')
+  const [emailMessage, setEmailMessage] = useState('')
 
-
-  let [passMessage, setPassMessage] = useState('')
-  let [emailMessage, setEmailMessage] = useState('')
+  const onChangeHandle = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value })
+  }
 
   const formSubmit = (e) => {
     e.preventDefault()
-    console.log('render')
+
     // Validation
-    if (passwordInput.length > 4) {
-      if (!table.find(item => item.email === emailInput)) {
-        setNameInput('')
-        setPasswordInput('')
-        setEmailInput('')
-        setCheckboxInput(false)
+    if (formData.password.length > 4) {
+      if (!table.find(item => item.email === formData.email)) {
+        setFormData(emptyForm)
         setPassMessage('')
         setEmailMessage('')
         setTable(table => {
           let newTable = [...table]
           newTable.push({
-            id: (newTable.length>0 ? newTable[newTable.length - 1].id + 1 : 0),
-            name: nameInput,
-            password: passwordInput,
-            email: emailInput,
-            isActive: checkboxInput
+            id: (newTable.length > 0 ? newTable[newTable.length - 1].id + 1 : 0),
+            name: formData.name,
+            password: formData.password,
+            email: formData.email,
+            isActive: formData.isActive
           })
           return newTable
         })
@@ -37,23 +36,23 @@ function Form({ table, setTable }) {
     } else {
       setPassMessage('password must be min. 5')
     }
-    if (table.find(item => item.email === emailInput)) {
+    if (table.find(item => item.email === formData.email)) {
       setEmailMessage('the email already exist, try another')
     }
   }
 
   return (
     <form onSubmit={(e) => formSubmit(e)}>
-      <input type="text" onInput={(e) => setNameInput(e.target.value)} value={nameInput} placeholder='Name' required />
+      <input type="text" onChange={onChangeHandle} name='name' value={formData.name} placeholder='Name' required />
       <div style={{ 'position': 'relative' }}>
-        <input type="password" onInput={(e) => setPasswordInput(e.target.value)} value={passwordInput} placeholder='Password' required />
+        <input type="password" onChange={onChangeHandle} name='password' value={formData.password} placeholder='Password' required />
         <p className="errMessage">{passMessage}</p>
       </div>
       <div style={{ 'position': 'relative' }}>
-        <input type="email" onInput={(e) => setEmailInput(e.target.value)} value={emailInput} placeholder='email' required />
+        <input type="email" onChange={onChangeHandle} name='email' value={formData.email} placeholder='email' required />
         <p className="errMessage">{emailMessage}</p>
       </div>
-      isActive<input type="checkbox" onInput={(e) => setCheckboxInput(e.target.checked)} value={checkboxInput} id='checkbox' />
+      isActive<input type="checkbox" onChange={onChangeHandle} name='isActive' value={formData.isActive} id='checkbox' />
       <button type="submit">ENTER</button>
     </form>
   )
