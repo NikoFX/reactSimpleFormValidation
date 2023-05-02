@@ -13,7 +13,7 @@ Simple Form Validation
 
 A short demo user form validation app without any from tools.
 
-![](./header.png|width=100)
+![](https://raw.githubusercontent.com/NikoFX/reactSimpleFormValidation/main/header.png)
 
 ## Development setup
 
