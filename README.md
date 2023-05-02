@@ -1,5 +1,5 @@
-Pizza App
-> react-pizaa-app
+Simple Form Validation
+> reactSimpleFormValidation
 
 
  ## [Demo](https://brilliant-salamander-26d54f.netlify.app/)
@@ -13,7 +13,7 @@ Pizza App
 
 A short demo user form validation app without any from tools.
 
-![](header.png)
+![](./header.png|width=100)
 
 ## Development setup
 
