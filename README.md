@@ -11,7 +11,7 @@ Simple Form Validation
 ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
 ![Webpack](https://img.shields.io/badge/webpack-%238DD6F9.svg?style=for-the-badge&logo=webpack&logoColor=black)
 
-A short demo user form validation app without any from tools.
+A short demo user form validation app without any form tools.
 
 ![](https://raw.githubusercontent.com/NikoFX/reactSimpleFormValidation/main/header.png)
 
